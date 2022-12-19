@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation_graph"
+    app:startDestination="@id/storeFrontFragment">
+
+    <fragment
+        android:id="@+id/storeFrontFragment"
+        android:name="com.example.funbox.StoreFrontFragment"
+        android:label="fragment_store_front"
+        tools:layout="@layout/fragment_store_front" />
+    <fragment
+        android:id="@+id/backendFragment"
+        android:name="com.example.funbox.BackendFragment"
+        android:label="fragment_backend"
+        tools:layout="@layout/fragment_backend" />
+</navigation>
