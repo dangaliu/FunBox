@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.funbox.databinding.StoreItemBinding
-import com.example.funbox.model.entitiy.StoreItem
+import com.example.funbox.model.entitiy.Phone
 
 class StoreItemAdapter : RecyclerView.Adapter<StoreItemAdapter.StoreItemViewHolder>() {
 
-    private val items: ArrayList<StoreItem> = arrayListOf()
+    private var items: ArrayList<Phone> = arrayListOf()
 
     inner class StoreItemViewHolder(val binding: StoreItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -29,9 +29,8 @@ class StoreItemAdapter : RecyclerView.Adapter<StoreItemAdapter.StoreItemViewHold
 
     override fun getItemCount(): Int = items.size
 
-    fun updateItems(items: List<StoreItem>) {
-        this.items.clear()
-        this.items.addAll(items)
+    fun updateItems(items: List<Phone>) {
+        this.items = ArrayList(items)
         notifyDataSetChanged()
     }
 }

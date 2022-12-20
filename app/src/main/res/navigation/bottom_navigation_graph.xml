@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/editItemFragment"
-        android:name="com.example.funbox.view.fragment.EditItemFragment"
+        android:name="com.example.funbox.view.fragment.EditPhoneFragment"
         android:label="fragment_edit_item"
-        tools:layout="@layout/fragment_edit_item" />
+        tools:layout="@layout/fragment_edit_phone" />
 </navigation>

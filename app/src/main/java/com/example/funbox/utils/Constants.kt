@@ -1,3 +1,7 @@
 package com.example.funbox.utils
 
 const val STORE_ITEM_KEY = "STORE_ITEM_KEY"
+const val FRAGMENT_STORE_ITEM_REQUEST_KEY = "FRAGMENT_STORE_ITEM_REQUEST_KEY"
+const val CHANGED_STORE_ITEM_KEY = "CHANGED_STORE_ITEM_KEY"
+const val IS_FIRST_INIT = "IS_FIRST_INIT"
+const val CSV_FILE_NAME = "data.csv"

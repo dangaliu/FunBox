@@ -5,30 +5,50 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
-import com.example.funbox.R
 import com.example.funbox.adapters.StoreItemAdapter
 import com.example.funbox.databinding.FragmentStoreFrontBinding
-import com.example.funbox.utils.CsvHelper
+import com.example.funbox.model.repository.PhoneRepository
+import com.example.funbox.model.storage.CsvPhoneStorage
+import com.example.funbox.view.activity.MainActivity
+import com.example.funbox.viewmodel.PhoneViewModel
+import com.example.funbox.viewmodel.PhoneViewModelFactory
 
 class StoreFrontFragment : Fragment() {
 
     private lateinit var binding: FragmentStoreFrontBinding
     private lateinit var adapter: StoreItemAdapter
 
+    private lateinit var viewModel: PhoneViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            (requireActivity() as MainActivity).phoneViewModelFactory
+        )[PhoneViewModel::class.java]
+        viewModel.getPhones(requireContext())
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentStoreFrontBinding.inflate(inflater, container, false)
         init()
         return binding.root
     }
 
-    private fun init() {
-        adapter = StoreItemAdapter().also {
-            it.updateItems(CsvHelper.readFromCsv(requireContext()))
+    private fun setObservers() {
+        viewModel.phones.observe(requireActivity()) {
+            adapter.updateItems(it)
+            println("observe front $it")
         }
+    }
+
+    private fun init() {
+        adapter = StoreItemAdapter()
+        setObservers()
         binding.storeViewPager.also {
             it.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             it.adapter = adapter

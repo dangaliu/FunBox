@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.funbox.databinding.BackendRvItemBinding
 import com.example.funbox.interfaces.OnBackendItemClickListener
-import com.example.funbox.model.entitiy.StoreItem
+import com.example.funbox.model.entitiy.Phone
 
 class BackendItemAdapter(private val listener: OnBackendItemClickListener) : RecyclerView.Adapter<BackendItemAdapter.BackendItemViewHolder>() {
 
-    private val items: ArrayList<StoreItem> = arrayListOf()
+    private var items: ArrayList<Phone> = arrayListOf()
 
     inner class BackendItemViewHolder(val binding: BackendRvItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -34,9 +34,8 @@ class BackendItemAdapter(private val listener: OnBackendItemClickListener) : Rec
     override fun getItemCount(): Int = items.size
 
 
-    fun updateItems(items: List<StoreItem>) {
-        this.items.clear()
-        this.items.addAll(items)
+    fun updateItems(items: List<Phone>) {
+        this.items = ArrayList(items)
         notifyDataSetChanged()
     }
 }
