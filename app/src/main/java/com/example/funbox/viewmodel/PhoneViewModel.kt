@@ -33,9 +33,7 @@ class PhoneViewModel(
         _phones.let {
             it.forEachIndexed { i, _ ->
                 if (it[i].id == phone.id) {
-                    println(it[i])
                     it[i] = phone
-                    println(it[i])
                 }
             }
         }

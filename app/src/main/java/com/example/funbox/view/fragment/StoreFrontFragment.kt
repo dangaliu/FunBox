@@ -15,21 +15,10 @@ import com.example.funbox.view.activity.MainActivity
 import com.example.funbox.viewmodel.PhoneViewModel
 import com.example.funbox.viewmodel.PhoneViewModelFactory
 
-class StoreFrontFragment : Fragment() {
+class StoreFrontFragment : BaseFragment() {
 
     private lateinit var binding: FragmentStoreFrontBinding
     private lateinit var adapter: StoreItemAdapter
-
-    private lateinit var viewModel: PhoneViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            (requireActivity() as MainActivity).phoneViewModelFactory
-        )[PhoneViewModel::class.java]
-        viewModel.getPhones(requireContext())
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -42,7 +31,6 @@ class StoreFrontFragment : Fragment() {
     private fun setObservers() {
         viewModel.phones.observe(requireActivity()) {
             adapter.updateItems(it)
-            println("observe front $it")
         }
     }
 

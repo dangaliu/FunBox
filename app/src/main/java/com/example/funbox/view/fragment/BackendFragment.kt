@@ -22,21 +22,10 @@ import com.example.funbox.view.activity.MainActivity
 import com.example.funbox.viewmodel.PhoneViewModel
 import com.example.funbox.viewmodel.PhoneViewModelFactory
 
-class BackendFragment : Fragment(), OnBackendItemClickListener {
+class BackendFragment : BaseFragment(), OnBackendItemClickListener {
 
     private lateinit var binding: FragmentBackendBinding
     private lateinit var backendItemAdapter: BackendItemAdapter
-
-    private lateinit var viewModel: PhoneViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            (requireActivity() as MainActivity).phoneViewModelFactory
-        )[PhoneViewModel::class.java]
-        viewModel.getPhones(requireContext())
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +39,6 @@ class BackendFragment : Fragment(), OnBackendItemClickListener {
     private fun setObservers() {
         viewModel.phones.observe(requireActivity()) {
             backendItemAdapter.updateItems(it)
-            println("observe backend $it")
         }
     }
 
