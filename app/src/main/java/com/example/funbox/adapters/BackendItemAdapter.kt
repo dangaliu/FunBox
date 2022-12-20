@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.funbox.databinding.BackendRvItemBinding
+import com.example.funbox.interfaces.OnBackendItemClickListener
 import com.example.funbox.model.entitiy.StoreItem
 
-class BackendItemAdapter : RecyclerView.Adapter<BackendItemAdapter.BackendItemViewHolder>() {
+class BackendItemAdapter(private val listener: OnBackendItemClickListener) : RecyclerView.Adapter<BackendItemAdapter.BackendItemViewHolder>() {
 
     private val items: ArrayList<StoreItem> = arrayListOf()
 
@@ -24,10 +25,14 @@ class BackendItemAdapter : RecyclerView.Adapter<BackendItemAdapter.BackendItemVi
         with(holder.binding) {
             tvTitle.text = item.title.trim('\"')
             tvCount.text = "${item.count.trim('"')} шт."
+            ivOpen.setOnClickListener {
+                listener.onClick(item)
+            }
         }
     }
 
     override fun getItemCount(): Int = items.size
+
 
     fun updateItems(items: List<StoreItem>) {
         this.items.clear()

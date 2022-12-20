@@ -8,4 +8,8 @@
     <string name="buy">Купить</string>
     <string name="count">Количество</string>
     <string name="add">Add</string>
+    <string name="open_item">open item</string>
+    <string name="close">Отменить</string>
+    <string name="save">Сохранить</string>
+    <string name="title">Название</string>
 </resources>

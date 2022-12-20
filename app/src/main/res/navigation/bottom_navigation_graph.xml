@@ -14,5 +14,14 @@
         android:id="@+id/backendFragment"
         android:name="com.example.funbox.view.fragment.BackendFragment"
         android:label="fragment_backend"
-        tools:layout="@layout/fragment_backend" />
+        tools:layout="@layout/fragment_backend" >
+        <action
+            android:id="@+id/action_backendFragment_to_editItemFragment"
+            app:destination="@id/editItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editItemFragment"
+        android:name="com.example.funbox.view.fragment.EditItemFragment"
+        android:label="fragment_edit_item"
+        tools:layout="@layout/fragment_edit_item" />
 </navigation>
