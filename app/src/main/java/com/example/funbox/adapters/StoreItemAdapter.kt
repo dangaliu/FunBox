@@ -29,7 +29,7 @@ class StoreItemAdapter : RecyclerView.Adapter<StoreItemAdapter.StoreItemViewHold
 
     override fun getItemCount(): Int = items.size
 
-    private fun updateItems(items: List<StoreItem>) {
+    fun updateItems(items: List<StoreItem>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()

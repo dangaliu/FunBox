@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.funbox.R
 import com.example.funbox.databinding.ActivityMainBinding
+import com.example.funbox.utils.CsvHelper
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,5 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val navController = findNavController(R.id.navHostFragment)
         binding.bottomNavigationView.setupWithNavController(navController)
+        println(CsvHelper.readFromCsv(this))
     }
 }

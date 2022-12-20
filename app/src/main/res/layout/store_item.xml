@@ -84,7 +84,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/itemPrice"
         app:layout_constraintVertical_weight="1"
-        tools:text="Количество" />
+        android:text="@string/count" />
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="0dp"
