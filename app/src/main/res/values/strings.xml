@@ -7,4 +7,5 @@
     <string name="price">Цена</string>
     <string name="buy">Купить</string>
     <string name="count">Количество</string>
+    <string name="add">Add</string>
 </resources>
