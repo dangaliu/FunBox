@@ -5,7 +5,7 @@ import com.example.funbox.model.entitiy.Phone
 interface PhoneStorage {
 
 
-    fun getAll(): List<Phone>
+    suspend fun getAll(): List<Phone>
 
-    fun saveAll(phones: List<Phone>)
+    suspend fun saveAll(phones: List<Phone>)
 }

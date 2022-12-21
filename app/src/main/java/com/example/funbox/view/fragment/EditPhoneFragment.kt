@@ -18,25 +18,18 @@ import com.example.funbox.view.activity.MainActivity
 import com.example.funbox.viewmodel.PhoneViewModel
 import com.example.funbox.viewmodel.PhoneViewModelFactory
 
-class EditPhoneFragment : Fragment() {
+class EditPhoneFragment : BaseFragment() {
 
     private lateinit var binding: FragmentEditPhoneBinding
     private var isEdit = false
     private lateinit var phone: Phone
 
-    private lateinit var viewModel: PhoneViewModel
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEditPhoneBinding.inflate(inflater, container, false)
         init()
         setListeners()
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            PhoneViewModelFactory((requireActivity() as MainActivity).phoneRepository)
-        )[PhoneViewModel::class.java]
         return binding.root
     }
 
@@ -79,8 +72,7 @@ class EditPhoneFragment : Fragment() {
         val title = binding.etTitle.text.toString()
         val price = binding.etPrice.text.toString()
         val count = binding.etCount.text.toString()
-        val changedPhone =
-            Phone(id = phone.id, title = title, price = price, count = count)
+        val changedPhone = Phone(id = phone.id, title = title, price = price, count = count)
         if (changedPhone != phone) {
             viewModel.updatePhone(changedPhone)
         }

@@ -5,11 +5,11 @@ import com.example.funbox.model.storage.PhoneStorage
 
 class PhoneRepository(private val phoneStorage: PhoneStorage) {
 
-    fun getAll(): List<Phone> {
+    suspend fun getAll(): List<Phone> {
         return phoneStorage.getAll()
     }
 
-    fun saveAll(phones: List<Phone>) {
+    suspend fun saveAll(phones: List<Phone>) {
         phoneStorage.saveAll(phones)
     }
 }

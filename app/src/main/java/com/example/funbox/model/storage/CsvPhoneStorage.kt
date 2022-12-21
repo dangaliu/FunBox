@@ -5,11 +5,11 @@ import com.example.funbox.utils.CsvHelper
 
 class CsvPhoneStorage : PhoneStorage {
 
-    override fun getAll(): List<Phone> {
+    override suspend fun getAll(): List<Phone> {
         return CsvHelper.readFromCsv()
     }
 
-    override fun saveAll(phones: List<Phone>) {
+    override suspend fun saveAll(phones: List<Phone>) {
         CsvHelper.writeToCsv(phones)
     }
 }

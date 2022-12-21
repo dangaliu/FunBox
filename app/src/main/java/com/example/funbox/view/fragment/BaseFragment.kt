@@ -16,6 +16,5 @@ open class BaseFragment : Fragment() {
             requireActivity(),
             (requireActivity() as MainActivity).phoneViewModelFactory
         )[PhoneViewModel::class.java]
-        viewModel.getPhones()
     }
 }
