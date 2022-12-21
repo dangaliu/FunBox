@@ -25,6 +25,7 @@ class StoreFrontFragment : BaseFragment() {
     ): View? {
         binding = FragmentStoreFrontBinding.inflate(inflater, container, false)
         init()
+        setObservers()
         return binding.root
     }
 
@@ -36,7 +37,6 @@ class StoreFrontFragment : BaseFragment() {
 
     private fun init() {
         adapter = StoreItemAdapter()
-        setObservers()
         binding.storeViewPager.also {
             it.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             it.adapter = adapter

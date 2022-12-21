@@ -1,11 +1,11 @@
 package com.example.funbox.view.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import android.util.Log
+import android.view.*
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,15 +15,9 @@ import com.example.funbox.adapters.BackendItemAdapter
 import com.example.funbox.databinding.FragmentBackendBinding
 import com.example.funbox.interfaces.OnBackendItemClickListener
 import com.example.funbox.model.entitiy.Phone
-import com.example.funbox.model.repository.PhoneRepository
-import com.example.funbox.model.storage.CsvPhoneStorage
 import com.example.funbox.utils.STORE_ITEM_KEY
-import com.example.funbox.view.activity.MainActivity
-import com.example.funbox.viewmodel.PhoneViewModel
-import com.example.funbox.viewmodel.PhoneViewModelFactory
 
 class BackendFragment : BaseFragment(), OnBackendItemClickListener {
-
     private lateinit var binding: FragmentBackendBinding
     private lateinit var backendItemAdapter: BackendItemAdapter
 
@@ -33,6 +27,8 @@ class BackendFragment : BaseFragment(), OnBackendItemClickListener {
     ): View? {
         binding = FragmentBackendBinding.inflate(inflater, container, false)
         init()
+        setListeners()
+        setObservers()
         return binding.root
     }
 
@@ -44,12 +40,35 @@ class BackendFragment : BaseFragment(), OnBackendItemClickListener {
 
     private fun init() {
         backendItemAdapter = BackendItemAdapter(this)
-        setObservers()
+
         binding.rvItems.also {
             it.layoutManager = LinearLayoutManager(requireContext())
             it.adapter = backendItemAdapter
             it.addItemDecoration(DividerItemDecoration(requireContext(), VERTICAL))
         }
+
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.backend_toolbar_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                when (menuItem.itemId) {
+                    R.id.add -> {
+                        findNavController().navigate(R.id.action_backendFragment_to_editItemFragment)
+                        return true
+                    }
+                    else -> return false
+                }
+            }
+        }, viewLifecycleOwner)
+    }
+
+
+    private fun setListeners() {
+
     }
 
     override fun onClick(item: Phone) {

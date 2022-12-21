@@ -14,6 +14,7 @@
         android:layout_marginStart="16dp"
         android:ellipsize="end"
         android:ems="8"
+        android:maxEms="8"
         android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvCount"
@@ -28,6 +29,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
+        android:ellipsize="end"
+        android:maxEms="4"
+        android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintEnd_toStartOf="@id/ivOpen"
         app:layout_constraintStart_toEndOf="@id/tvTitle"
@@ -39,13 +43,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/open_item"
         android:src="@drawable/ic_arrow_right"
         app:layout_constraintBottom_toBottomOf="@id/tvCount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvCount"
         app:layout_constraintTop_toTopOf="@id/tvCount"
-        app:tint="@color/blue_500"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/open_item" />
+        app:tint="@color/blue_500" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

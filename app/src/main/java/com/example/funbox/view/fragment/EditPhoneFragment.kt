@@ -64,10 +64,14 @@ class EditPhoneFragment : Fragment() {
         binding.btnClose.setOnClickListener {
             findNavController().popBackStack()
         }
+
         binding.btnSave.setOnClickListener {
             if (isEdit) {
                 saveItem()
+            } else {
+                addNewItem()
             }
+            findNavController().popBackStack()
         }
     }
 
@@ -79,9 +83,16 @@ class EditPhoneFragment : Fragment() {
             Phone(id = phone.id, title = title, price = price, count = count)
         if (changedPhone != phone) {
             viewModel.updatePhone(changedPhone)
-            findNavController().popBackStack()
         }
 
+    }
+
+    private fun addNewItem() {
+        val title = binding.etTitle.text.toString()
+        val price = binding.etPrice.text.toString()
+        val count = binding.etCount.text.toString()
+        val newPhone = Phone(title = title, price = price, count = count)
+        viewModel.addPhone(newPhone)
     }
 
 }

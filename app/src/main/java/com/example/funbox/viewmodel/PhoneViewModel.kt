@@ -1,6 +1,5 @@
 package com.example.funbox.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,17 +10,16 @@ class PhoneViewModel(
     private val phoneRepository: PhoneRepository
 ) : ViewModel() {
 
-    private var _phones = arrayListOf<Phone>()
+    private var _phones = ArrayList(phoneRepository.getAll())
     private var mutablePhones = MutableLiveData<ArrayList<Phone>>(arrayListOf())
     val phones: LiveData<ArrayList<Phone>> = mutablePhones
 
-    fun getPhones(context: Context) {
-        _phones = ArrayList(phoneRepository.getAll(context))
+    fun getPhones() {
         mutablePhones.value = _phones
     }
 
-    fun savePhones(context: Context, phones: List<Phone>) {
-        phoneRepository.saveAll(context, phones)
+    fun savePhones(phones: List<Phone>) {
+        phoneRepository.saveAll(phones)
     }
 
     fun addPhone(phone: Phone) {
