@@ -36,5 +36,4 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
         phoneViewModelFactory = PhoneViewModelFactory(phoneRepository)
     }
-
 }

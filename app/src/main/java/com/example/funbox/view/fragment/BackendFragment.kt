@@ -27,7 +27,6 @@ class BackendFragment : BaseFragment(), OnBackendItemClickListener {
     ): View? {
         binding = FragmentBackendBinding.inflate(inflater, container, false)
         init()
-        setListeners()
         setObservers()
         return binding.root
     }
@@ -64,11 +63,6 @@ class BackendFragment : BaseFragment(), OnBackendItemClickListener {
                 }
             }
         }, viewLifecycleOwner)
-    }
-
-
-    private fun setListeners() {
-
     }
 
     override fun onClick(item: Phone) {

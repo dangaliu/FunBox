@@ -1,6 +1,5 @@
 package com.example.funbox.model.storage
 
-import android.content.Context
 import com.example.funbox.model.entitiy.Phone
 
 interface PhoneStorage {

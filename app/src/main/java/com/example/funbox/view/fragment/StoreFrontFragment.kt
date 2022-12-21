@@ -42,4 +42,5 @@ class StoreFrontFragment : BaseFragment() {
             it.adapter = adapter
         }
     }
+
 }

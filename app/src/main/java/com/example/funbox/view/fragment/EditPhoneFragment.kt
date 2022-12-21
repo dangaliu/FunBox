@@ -95,4 +95,9 @@ class EditPhoneFragment : Fragment() {
         viewModel.addPhone(newPhone)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.phones.value?.let { viewModel.savePhones(it) }
+    }
+
 }
