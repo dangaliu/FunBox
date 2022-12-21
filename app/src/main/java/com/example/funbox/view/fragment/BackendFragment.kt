@@ -1,9 +1,7 @@
 package com.example.funbox.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.navigation.fragment.findNavController
@@ -32,7 +30,7 @@ class BackendFragment : BaseFragment(), OnBackendItemClickListener {
     }
 
     private fun setObservers() {
-        viewModel.phones.observe(requireActivity()) {
+        viewModel.allPhones.observe(requireActivity()) {
             backendItemAdapter.updateItems(it)
         }
     }
@@ -71,5 +69,10 @@ class BackendFragment : BaseFragment(), OnBackendItemClickListener {
             Bundle().also {
                 it.putParcelable(STORE_ITEM_KEY, item)
             })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.allPhones.value?.let { viewModel.savePhones(it) }
     }
 }
