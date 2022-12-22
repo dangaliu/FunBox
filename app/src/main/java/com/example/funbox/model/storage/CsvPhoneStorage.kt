@@ -2,6 +2,7 @@ package com.example.funbox.model.storage
 
 import com.example.funbox.model.entitiy.Phone
 import com.example.funbox.utils.CsvHelper
+import kotlinx.coroutines.delay
 
 class CsvPhoneStorage : PhoneStorage {
 

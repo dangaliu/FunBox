@@ -28,12 +28,6 @@ class PhoneViewModel(
         }
     }
 
-    fun savePhones(phones: List<Phone>) {
-        viewModelScope.launch(Dispatchers.IO) {
-            phoneRepository.saveAll(phones)
-        }
-    }
-
     fun addPhone(phone: Phone) {
         viewModelScope.launch(Dispatchers.Default) {
             _allPhones.add(phone)

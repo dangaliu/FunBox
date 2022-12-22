@@ -12,9 +12,6 @@ open class BaseFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            (requireActivity() as MainActivity).phoneViewModelFactory
-        )[PhoneViewModel::class.java]
+        viewModel = (requireActivity() as MainActivity).viewModel
     }
 }

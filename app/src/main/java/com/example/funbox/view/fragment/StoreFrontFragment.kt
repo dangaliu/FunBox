@@ -42,9 +42,4 @@ class StoreFrontFragment : BaseFragment(), OnBuyPhoneListener {
         viewModel.buyPhone(phone)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewModel.allPhones.value?.let { viewModel.savePhones(it) }
-    }
-
 }

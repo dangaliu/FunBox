@@ -71,8 +71,4 @@ class BackendFragment : BaseFragment(), OnBackendItemClickListener {
             })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewModel.allPhones.value?.let { viewModel.savePhones(it) }
-    }
 }

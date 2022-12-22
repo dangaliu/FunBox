@@ -2,6 +2,7 @@ package com.example.funbox.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -13,6 +14,7 @@ import com.example.funbox.R
 import com.example.funbox.databinding.ActivityMainBinding
 import com.example.funbox.model.repository.PhoneRepository
 import com.example.funbox.model.storage.CsvPhoneStorage
+import com.example.funbox.services.PhonesService
 import com.example.funbox.viewmodel.PhoneViewModel
 import com.example.funbox.viewmodel.PhoneViewModelFactory
 
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val phoneStorage = CsvPhoneStorage()
     val phoneRepository = PhoneRepository(phoneStorage)
     lateinit var phoneViewModelFactory: PhoneViewModelFactory
+    lateinit var viewModel: PhoneViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,5 +38,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
         phoneViewModelFactory = PhoneViewModelFactory(phoneRepository)
+        viewModel = ViewModelProvider(this, phoneViewModelFactory)[PhoneViewModel::class.java]
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.allPhones.value?.let { PhonesService.startService(this, it) }
+        Log.d("onDestroy", "kkk")
     }
 }

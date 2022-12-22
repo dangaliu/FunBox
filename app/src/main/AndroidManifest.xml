@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:name=".app.FunBoxApp"
         android:allowBackup="true"
@@ -26,6 +28,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <service
+            android:name=".services.PhonesService"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>
